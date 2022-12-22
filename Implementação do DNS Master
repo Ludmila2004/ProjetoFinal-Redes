@@ -1,9 +1,1 @@
-# Implementação do DNS Master.
 
-
-## Instalação
-Instalar o bind9 via apt-get, pois é a aplicação de DNS que roda no servidor.
-
-```bash
-$ sudo apt-get install bind9 dnsutils bind9-doc 
-```
