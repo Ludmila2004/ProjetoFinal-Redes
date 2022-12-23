@@ -67,7 +67,8 @@ network:
         enp0s8:
             addresses: [10.0.0.1/24]
             dhcp4: false              
-    version: 2```
+    version: 2
+```
 
 ### Passo 5
 * Como um arquivo foi apagado, é necessário criá-lo novamente, assim:
