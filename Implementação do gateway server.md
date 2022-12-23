@@ -111,7 +111,8 @@ iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 
 # rc.local needs to exit with 0
 # rc.local precisa sair com 0
-exit 0```
+exit 0
+```
 
 ### Passo 6
 * Após tudo, o usuário deve converter o arquivo acima para poder executá-lo e ser possível inicializar no boot
@@ -130,6 +131,44 @@ $ sudo ufw status
 ```bash
 $ sudo reboot
 ```
+### Passo 7
+* A partir daqui, a finalidade é permitir que o serviço de compartilhamento de arquivos esteja disponível externamente
+* Após ter reinicializado, entre novamente na sua vpn(DO GATEWAY)e ultilize o comando abaixo para entrar no seu diretório
+> Comando
+```bash
+$ cd /etc/netplan/
+$ ls -la
+```
+* Depois de executar esses comandos, como a configuração de rede passou a ser feita através da ferramenta Netplan, que mantém as configurações da rede em um arquivo do tipo YAML. O arquivo de configuração de rede nessas versões fica no seguinte endereço:
+```bash
+$ cat /etc/netplan/00-installer-config.yaml
+```
+### Passo 8 
+* Após o usuário entrar nas outras vpn's com os passos anteriormente ensinados, ultilie o comando:
+```bash
+$ sudo vi /etc/netplan/00-installer-config.yaml
+```
+* Irá abrir uma interface e o usuário deve ativar o gateway no SAMBA, NS1 e NS2
+* Após isso, você deve comentar(#) o primeiro gateway e tirar o comentário do segundo, como tá representado abaixo.
+* Lembre-se de alterar o gateway para o IP do seu próprio gateway
+----- IMAGEM------
 
+```bash
+$ sudo netplan apply
+```
 
+### Passo 9
+* Para que o compartilhamento de arquivos esteja disponível externamente, adicione as informações do IPTABLES sobre portas
+```bash
+$ sudo vi /etc/rc.local
+```
+* Adicione os seguintes textos
+```bash
+#Recebe pacotes na porta 445 da interface externa do gw e encaminha para o servidor interno na porta 445
+iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 445 -j DNAT --to 10.0.0.100:445
+iptables -A FORWARD -p tcp -d 10.0.0.100 --dport 445 -j ACCEPT
 
+#Recebe pacotes na porta 139 da interface externa do gw e encaminha para o servidor interno na porta 139
+iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 139 -j DNAT --to 10.0.0.100:139
+iptables -A FORWARD -p tcp -d 10.0.0.100 --dport 139 -j ACCEPT
+```
