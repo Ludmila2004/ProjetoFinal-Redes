@@ -49,12 +49,19 @@ $ sudo netplan apply
 $ ifconfig -a
 ```
 
+![Captura de tela de 2022-12-23 10-32-16](https://user-images.githubusercontent.com/80183918/209344307-1acaf3e6-0469-4535-a76c-a020af3dfcc5.png)
+
+
 ### Passo 2
 * Instalação do servidor samba para a VM de IP ```10.9.13.116```.
 ```bash
 $ sudo apt update
+```
+![Captura de tela de 2022-12-23 10-33-33](https://user-images.githubusercontent.com/80183918/209344487-b0f87093-a184-455e-9524-9907b614588c.png)
+```bash
 $ sudo apt install samba
 ```
+![Captura de tela de 2022-12-23 10-34-07](https://user-images.githubusercontent.com/80183918/209344553-22e0205a-ee3d-415e-a1b7-c225637155a3.png)
 
 ### Passo 3
 * Verificação da plena execução do samba.
@@ -62,86 +69,36 @@ $ sudo apt install samba
 ```bash
 $ whereis samba
 ```
+![Captura de tela de 2022-12-23 10-35-59](https://user-images.githubusercontent.com/80183918/209344824-9e016791-da15-4c80-96b7-6612b819fdc8.png)
 > Apresentação do status do samba no sistema:
 ```bash
 $ sudo systemctl status smbd
 ```
-
+![Captura de tela de 2022-12-23 10-36-57](https://user-images.githubusercontent.com/80183918/209344958-2c4490c9-94bb-4f7c-8af5-bf5bb493a185.png)
 > Exibição das portas que estão sendo utilizadas: 
 ```bash
 $ netstat -an | grep LISTEN
 ```
+![Captura de tela de 2022-12-23 10-37-40](https://user-images.githubusercontent.com/80183918/209345030-210b1a87-a081-42f1-9418-9c175ec54273.png)
+
 ### Passo 4
 * Realizar o ```backup``` da configuração do samba.
 ```bash
 $ sudo cp /etc/samba/smb.conf{,.backup}
 $ ls -la
--rw-r--r--  1 root root 8942 Mar 22 20:55 smb.conf
--rw-r--r--  1 root root 8942 Mar 23 01:42 smb.conf.backup
 $ sudo bash -c 'grep -v -E "^#|^;" /etc/samba/smb.conf.backup | grep . > /etc/samba/smb.conf'
 ```
+![Captura de tela de 2022-12-23 10-39-13](https://user-images.githubusercontent.com/80183918/209345846-fe628b5e-33fe-408d-9798-0748e25da1f5.png)
 
-### Passo 6
+### Passo 5
 * Editar o arquivo ```/etc/samba/smb.conf```, de modo a adicionar as interfaces de rede e alterar a seção ```public```.
 > Lembre-se de separar o nome das interfaces por espaços. 
 ```bash
 $ sudo nano /etc/samba/smb.conf
 ```
 > O arquivo deve possuir essa cara:
-```bash
-[global]
-   workgroup = WORKGROUP
-   netbios name = samba-srv
-   security = user
-   server string = %h server (Samba, Ubuntu)
-   interfaces = 127.0.0.1/8 ens160 ens192
-   bind interfaces only = yes
-   log file = /var/log/samba/log.%m
-   max log size = 1000
-   logging = file
-   panic action = /usr/share/samba/panic-action %d
-   server role = standalone server
-   obey pam restrictions = yes
-   unix password sync = yes
-   passwd program = /usr/bin/passwd %u
-   passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
-   pam password change = yes
-   map to guest = bad user
-   usershare allow guests = yes
-[printers]
-   comment = All Printers
-   browseable = no
-   path = /var/spool/samba
-   printable = yes
-   guest ok = no
-   read only = yes
-   create mask = 0700
-[print$]
-   comment = Printer Drivers
-   path = /var/lib/samba/printers
-   browseable = yes
-   read only = yes
-   guest ok = no
-[homes]
-   comment = Home Directories
-   browseable = yes
-   read only = no
-   create mask = 0700
-   directory mask = 0700
-   valid users = %S
-[public]
-   comment = public anonymous access
-   path = /samba/public
-   browsable =yes
-   create mask = 0660
-   directory mask = 0771
-   writable = yes
-   guest ok = no
-   valid users = @sambashare
-   #guest only = yes
-   #force user = nobody
-   #force create mode = 0777
-   #force directory mode = 0777
+![Captura de tela de 2022-12-23 10-41-18](https://user-images.githubusercontent.com/80183918/209345949-657cb017-e6cb-401b-a805-782e99db7325.png)
+
 ```
 * Reinicie o servidor, para salvar as alterações.
 ```bash
@@ -184,6 +141,8 @@ Added user aluno.
 
 $ sudo usermod -aG sambashare aluno
 ```
+![Captura de tela de 2022-12-23 10-46-15](https://user-images.githubusercontent.com/80183918/209346098-67ca39c9-e29e-4518-b677-49d956ff5b28.png)
+
 
 ### Passo 8
 * Criar um diretório para compartilhar o samba em rede. 
@@ -191,6 +150,7 @@ $ sudo usermod -aG sambashare aluno
 $ mkdir sambashare
 $ sudo mkdir -p /samba/public
 ```
+![Captura de tela de 2022-12-23 10-47-41](https://user-images.githubusercontent.com/80183918/209346290-c93c455e-9fec-468c-b349-f93db266fce8.png)
 
 * Habilitar permissões para que qualquer um utilize o compartilhamento de arquivos de maneira pública.
 ```bash
@@ -202,6 +162,9 @@ $ ls -la
 $ sudo chgrp sambashare /samba/public
 $ ls -la
 ```
+![Captura de tela de 2022-12-23 10-48-09](https://user-images.githubusercontent.com/80183918/209346363-214026e5-13bd-4324-937c-5a907b963298.png)
+![Captura de tela de 2022-12-23 10-48-48](https://user-images.githubusercontent.com/80183918/209346474-20e474e5-2103-4f8f-bdff-b472d3a20f1b.png)
+
 
 ## Verificação da efetividade dos passos realizados
 * Digite o endereço IP da máquina responsável pelo servidor samba no ```Windows Explorer```, por exemplo, da seguinte forma:
