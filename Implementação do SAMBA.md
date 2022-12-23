@@ -105,7 +105,7 @@ $ sudo nano /etc/samba/smb.conf
 $ sudo systemctl restart smbd
 ```
 
-### Passo 7
+### Passo 6
 * Criar um usuário para que ele possa utilizar o compartilhamento de arquivos via ```samba```.
 > Recomendação de usuário e de senha:
 > 
@@ -144,7 +144,7 @@ $ sudo usermod -aG sambashare aluno
 ![Captura de tela de 2022-12-23 10-46-15](https://user-images.githubusercontent.com/80183918/209346098-67ca39c9-e29e-4518-b677-49d956ff5b28.png)
 
 
-### Passo 8
+### Passo 7
 * Criar um diretório para compartilhar o samba em rede. 
 ```bash
 $ mkdir sambashare
