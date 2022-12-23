@@ -19,7 +19,7 @@ $ ssh administrador@10.9.13.111
 ## Guia de implementação
 
 ### Passo 1
-*Primeiramente faz-se necessário habilitar o firewall, somente assim é possivel configurar o gateway
+* Primeiramente faz-se necessário habilitar o firewall, somente assim é possivel configurar o gateway
 > Comando
 ```bash
  $ sudo ufw enable
