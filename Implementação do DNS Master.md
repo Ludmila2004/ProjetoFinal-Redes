@@ -1,4 +1,4 @@
-# Implemnetação do DNS Master
+# Implementação do DNS Master
 
 ## Instalação
 * Instalar o bind9 via apt-get, pois é a aplicação de DNS que roda no servidor.
