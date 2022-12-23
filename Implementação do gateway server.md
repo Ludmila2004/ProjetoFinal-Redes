@@ -34,6 +34,7 @@ $ ssh administrador@10.9.13.111
 ```bash
  $ sudo ufw status
 ```
+![Captura de tela de 2022-12-23 10-57-06](https://user-images.githubusercontent.com/80183918/209347549-b906d254-4353-4331-ba38-841393b4ce80.png)
 
 ### Passo 2
 * Encaminhamento de pacotes de WAN para LAN, editando os parâmetros do arquivo /etc/ufw/sysctl.conf, tirando o comentário(#) da linha net/ipv4/ip_forwarding=1
@@ -41,6 +42,7 @@ $ ssh administrador@10.9.13.111
 ```bash
 $ sudo nano /etc/ufw/sysctl.conf
 ```
+![Captura de tela de 2022-12-23 10-57-43](https://user-images.githubusercontent.com/80183918/209347633-97ef0f7b-b12d-4452-831f-dec606a54663.png)
 
 ### Passo 3
 * Ver se os nomes das interfaces WAN- enp0s3  e LAN- enp0s8 estão corretos
@@ -58,73 +60,33 @@ $ sudo nano /etc/netplan/50-cloud-init.yaml
 ```bash
 $ sudo netplan apply
 ```
+![Captura de tela de 2022-12-23 10-59-35](https://user-images.githubusercontent.com/80183918/209347925-50d38b20-45c9-4ca5-8762-1801054b5501.png)
 * Deve estar dessa forma quando for executado o comando inicial:
-```bash
-network:
-    ethernets:
-        enp0s3:
-            dhcp4: true
-        enp0s8:
-            addresses: [10.0.0.1/24]
-            dhcp4: false              
-    version: 2
-```
+![Captura de tela de 2022-12-23 10-59-52](https://user-images.githubusercontent.com/80183918/209347932-6ff4a29f-4357-45b6-b9de-048a35cf9705.png)
 
 ### Passo 5
 * Como um arquivo foi apagado, é necessário criá-lo novamente, assim:
 ```bash
 $ sudo nano /etc/rc.local
 ```
-* Após criado, deve inserir as seguintes descrições
-```bash
-#!/bin/bash
+![Captura de tela de 2022-12-23 11-02-37](https://user-images.githubusercontent.com/80183918/209348260-16a14715-c4f4-47da-8a97-12241d2ee39b.png)
 
-# /etc/rc.local
+Após criado, deve inserir algumas descrições, dessa forma, ficando da seguinte maneira:
+![Captura de tela de 2022-12-23 11-00-55](https://user-images.githubusercontent.com/80183918/209348299-4ef5cecf-ee81-4a27-ae94-73a8f28b370a.png)
 
-# Default policy to drop all incoming packets.
-# Politica padrão para bloquear (drop) todos os pacotes de entrada
-iptables -P INPUT DROP
-iptables -P FORWARD DROP
-
-# Accept incoming packets from localhost and the LAN interface.
-# Aceita pacotes de entrada a partir das interfaces localhost e the LAN.
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -i enp0s8 -j ACCEPT
-
-# Accept incoming packets from the WAN if the router initiated the connection.
-# Aceita pacotes de entrada a partir da WAN se o roteador iniciou a conexao
-iptables -A INPUT -i enp0s3 -m conntrack \
---ctstate ESTABLISHED,RELATED -j ACCEPT
-
-# Forward LAN packets to the WAN.
-# Encaminha os pacotes da LAN para a WAN
-iptables -A FORWARD -i enp0s8 -o enp0s3 -j ACCEPT
-
-# Forward WAN packets to the LAN if the LAN initiated the connection.
-# Encaminha os pacotes WAN para a LAN se a LAN inicar a conexao.
-iptables -A FORWARD -i enp0s3 -o enp0s8 -m conntrack \
---ctstate ESTABLISHED,RELATED -j ACCEPT
-
-# NAT traffic going out the WAN interface.
-# Trafego NAT sai pela interface WAN
-iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
-
-# rc.local needs to exit with 0
-# rc.local precisa sair com 0
-exit 0
-```
 
 ### Passo 6
 * Após tudo, o usuário deve converter o arquivo acima para poder executá-lo e ser possível inicializar no boot
 ```bash
 $ sudo chmod 755 /etc/rc.local
 ```
-
 * Para ver se realmente os comandos foram executados é possível ver o status
 > Comando
 ```bash
 $ sudo ufw status
 ```
+![Captura de tela de 2022-12-23 11-09-15](https://user-images.githubusercontent.com/80183918/209349236-38edf215-2f5b-430c-9c9d-9dc5e313365d.png)
+
 ### Passo 6
 * Reinicializar a máquina 
 > Comando
@@ -143,6 +105,8 @@ $ ls -la
 ```bash
 $ cat /etc/netplan/00-installer-config.yaml
 ```
+![Captura de tela de 2022-12-23 11-07-51](https://user-images.githubusercontent.com/80183918/209349042-b84e20c2-9121-4265-ad6d-b9f7ec5fa001.png)
+
 ### Passo 8 
 * Após o usuário entrar nas outras vpn's com os passos anteriormente ensinados, ultilie o comando:
 ```bash
@@ -151,24 +115,16 @@ $ sudo vi /etc/netplan/00-installer-config.yaml
 * Irá abrir uma interface e o usuário deve ativar o gateway no SAMBA, NS1 e NS2
 * Após isso, você deve comentar(#) o primeiro gateway e tirar o comentário do segundo, como tá representado abaixo.
 * Lembre-se de alterar o gateway para o IP do seu próprio gateway
------ IMAGEM------
-
 ```bash
 $ sudo netplan apply
 ```
+![Captura de tela de 2022-12-23 11-11-08](https://user-images.githubusercontent.com/80183918/209349478-562f5fbe-95d7-43aa-9a7b-fe2b431c1351.png)
 
 ### Passo 9
 * Para que o compartilhamento de arquivos esteja disponível externamente, adicione as informações do IPTABLES sobre portas
 ```bash
 $ sudo vi /etc/rc.local
 ```
-* Adicione os seguintes textos
-```bash
-#Recebe pacotes na porta 445 da interface externa do gw e encaminha para o servidor interno na porta 445
-iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 445 -j DNAT --to 10.0.0.100:445
-iptables -A FORWARD -p tcp -d 10.0.0.100 --dport 445 -j ACCEPT
+* Adicione  alguns textos, resultando em:
+![Captura de tela de 2022-12-23 11-12-16](https://user-images.githubusercontent.com/80183918/209349623-0befec9f-b753-4131-bb15-8fbd14e63eff.png)
 
-#Recebe pacotes na porta 139 da interface externa do gw e encaminha para o servidor interno na porta 139
-iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 139 -j DNAT --to 10.0.0.100:139
-iptables -A FORWARD -p tcp -d 10.0.0.100 --dport 139 -j ACCEPT
-```
