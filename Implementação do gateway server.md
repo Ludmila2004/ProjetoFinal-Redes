@@ -71,8 +71,8 @@ $ sudo nano /etc/rc.local
 ```
 Após criado, deve inserir algumas descrições, dessa forma, ficando da seguinte maneira:
 
-![Captura de tela de 2022-12-23 11-02-37](https://user-images.githubusercontent.com/80183918/209348260-16a14715-c4f4-47da-8a97-12241d2ee39b.png)
 ![Captura de tela de 2022-12-23 11-00-55](https://user-images.githubusercontent.com/80183918/209348299-4ef5cecf-ee81-4a27-ae94-73a8f28b370a.png)
+![Captura de tela de 2022-12-23 11-02-37](https://user-images.githubusercontent.com/80183918/209348260-16a14715-c4f4-47da-8a97-12241d2ee39b.png)
 
 
 ### Passo 6
