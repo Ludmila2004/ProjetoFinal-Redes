@@ -15,6 +15,8 @@ $ sudo systemctl status bind9
 ```bash
 $ sudo systemctl enable bind9
 ```
+![WhatsApp Image 2022-12-23 at 11 37 38](https://user-images.githubusercontent.com/80183918/209551961-5e8ca2a1-4acf-44cb-bc1b-aa508575f856.jpeg)
+
 
 ## Diretórios do bind
 * Os arquivos do bind no diretório /etc/bind.
@@ -56,12 +58,15 @@ $ sudo cp /etc/bind/db.empty /etc/bind/zones/db.labredes.ifalarapiraca.local
 ```bash
 $ sudo nano /etc/bind/named.conf.local
 ```
+![WhatsApp Image 2022-12-23 at 11 37 36 (2)](https://user-images.githubusercontent.com/80183918/209552545-25d089cc-559f-415c-8f8e-9f84b71c6d20.jpeg)
 
 ## Verificação de sintaxe
 * Executar o comando named-checkconf. Este scritp checa os arquivos /etc/bind/named.conf.local.
 ```bash
 $ sudo named-checkconf
 ```
+![WhatsApp Image 2022-12-23 at 11 37 38 (1)](https://user-images.githubusercontent.com/80183918/209552084-a63f63dd-8a9f-4346-9f41-bbfeb1f9a041.jpeg)
+
 
 ## Configure para somente resolver endereços IPv4
 ```bash
@@ -76,6 +81,7 @@ RESOLVCONF=no
 # startup options for the server
 OPTIONS="-4 -u bind"
 ```
+![WhatsApp Image 2022-12-23 at 11 37 38 (2)](https://user-images.githubusercontent.com/80183918/209552230-6d018b71-b9c9-43c9-880f-c74ea790c4bb.jpeg)
 
 ## Execute o BIND
 ```bash
@@ -85,6 +91,7 @@ $ sudo systemctl enable bind9
 ```bash
 $ sudo systemctl restart bind9
 ```
+![WhatsApp Image 2022-12-23 at 11 37 38 (3)](https://user-images.githubusercontent.com/80183918/209552316-84377764-3483-486b-a2d6-4e4fa961458f.jpeg)
 
 ## Configuração dos clientes
 * Configure o dns no nas máquina ns1, ns2 
@@ -100,23 +107,28 @@ $ sudo systemctl restart bind9
 ```bash
 $ sudo nano /etc/netplan/50-cloud-init.yaml 
 ```
+![WhatsApp Image 2022-12-23 at 11 37 37](https://user-images.githubusercontent.com/80183918/209552361-3ea33ae7-5ea5-4a55-8dd3-eae2a4d78dc4.jpeg)
 
 ## Testando o servidor DNS
 ```bash
 $ systemd-resolve --status enp0s3
 ```
+![WhatsApp Image 2022-12-23 at 11 37 37 (1)](https://user-images.githubusercontent.com/80183918/209552420-c42c7b8d-ac21-48d1-8eef-8885f44ab918.jpeg)
 
 ### Teste o serviço DNS para a máquina ns1.
 ```bash
 $ dig ns1.grupo4.turma913.ifalarapiraca.local
 ```
+![WhatsApp Image 2022-12-23 at 11 37 36](https://user-images.githubusercontent.com/80183918/209552472-a5f90ac5-debb-4404-8a15-26508c47f525.jpeg)
 
 ### Teste o serviço DNS reverso para a máquina ns1.
 ```bash
 $ dig -x 10.9.13.122
 ```
+![WhatsApp Image 2022-12-23 at 11 37 36 (1)](https://user-images.githubusercontent.com/80183918/209552539-2ae493dc-bea7-4d80-8590-a9f97aabaa8d.jpeg)
 
 ### Teste o serviço DNS reverso para a máquina ns2.
 ```bash
 $ dig -x 10.9.13.118
 ```
+![WhatsApp Image 2022-12-23 at 11 37 36 (2)](https://user-images.githubusercontent.com/80183918/209552545-25d089cc-559f-415c-8f8e-9f84b71c6d20.jpeg)
