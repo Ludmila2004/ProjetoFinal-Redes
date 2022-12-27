@@ -126,6 +126,7 @@ $ sudo netplan apply
 $ sudo vi /etc/rc.local
 ```
 * Adicione  alguns textos, resultando em:
+
 ![Captura de tela de 2022-12-23 11-12-16](https://user-images.githubusercontent.com/80183918/209349623-0befec9f-b753-4131-bb15-8fbd14e63eff.png)
 
 * Além disso, lembre-se de trocar algumas informações ajustando para a sua vpn, como IP e crie uma rota para as portas
