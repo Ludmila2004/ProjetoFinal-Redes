@@ -5,6 +5,7 @@
 ```bash
 $ sudo apt-get install bind9 dnsutils bind9-doc 
 ```
+![Imagem do WhatsApp de 2022-12-29 à(s) 20 09 31](https://user-images.githubusercontent.com/103438153/210019745-96a9bfff-56aa-4e33-98e0-84132243491f.jpg)
 
 * Verificação o status do serviço:
 ```bash
