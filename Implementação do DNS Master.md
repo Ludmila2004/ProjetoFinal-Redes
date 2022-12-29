@@ -64,7 +64,8 @@ $ sudo cp /etc/bind/db.empty /etc/bind/zones/db.labredes.ifalarapiraca.local
 ```bash
 $ sudo nano /etc/bind/named.conf.local
 ```
-![WhatsApp Image 2022-12-23 at 11 37 36 (2)](https://user-images.githubusercontent.com/80183918/209552545-25d089cc-559f-415c-8f8e-9f84b71c6d20.jpeg)
+
+![Imagem do WhatsApp de 2022-12-20 à(s) 17 09 33](https://user-images.githubusercontent.com/103438153/210020533-e47bb9c0-2558-4596-94cf-05852c3de70b.jpg)
 
 ## Verificação de sintaxe
 * Executar o comando named-checkconf. Este scritp checa os arquivos /etc/bind/named.conf.local.
