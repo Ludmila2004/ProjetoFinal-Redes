@@ -67,7 +67,8 @@ $ sudo netplan apply
 ```
 ![Captura de tela de 2022-12-23 10-59-35](https://user-images.githubusercontent.com/80183918/209347925-50d38b20-45c9-4ca5-8762-1801054b5501.png)
 * Deve estar dessa forma quando for executado o comando inicial:
-![Captura de tela de 2022-12-23 10-59-52](https://user-images.githubusercontent.com/80183918/209347932-6ff4a29f-4357-45b6-b9de-048a35cf9705.png)
+![Captura de tela de 2022-12-29 10-34-44](https://user-images.githubusercontent.com/94541734/209961317-6b71cbcd-5964-46eb-9843-724a6a71aa4a.png)
+
 
 ### Passo 5
 * Como um arquivo foi apagado, é necessário criá-lo novamente, assim:
