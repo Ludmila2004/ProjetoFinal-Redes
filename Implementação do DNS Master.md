@@ -38,12 +38,15 @@ $ sudo mkdir /etc/bind/zones
 ```bash
 $ sudo cp /etc/bind/db.empty /etc/bind/zones/db.labredes.ifalarapiraca.local 
 ```
+![Imagem do WhatsApp de 2022-12-29 à(s) 20 20 55](https://user-images.githubusercontent.com/103438153/210020392-e6457bdd-e6b9-4f0f-b6d4-eb5aae18440c.jpg)
+
 
 ### Zona reversa
 * Se utiliza quando não se conhece o IP mas, sabe-se o nome do host.Assim, temos que criar a zona reversa a partir do arquivo /etc/bind/db.127
 ```bash
   $ sudo cp /etc/bind/db.127 /etc/bind/zones/db.10.9.13.rev
 ```
+![Imagem do WhatsApp de 2022-12-29 à(s) 20 20 55](https://user-images.githubusercontent.com/103438153/210020423-9a7d5596-137d-4fc9-9a61-9bba0ac4b527.jpg)
 
 ## Editar arquivos db
 ### Zona direta: db.labredes.ifalarapiraca.local
