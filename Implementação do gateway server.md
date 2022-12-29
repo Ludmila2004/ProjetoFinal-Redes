@@ -5,8 +5,8 @@
 Bom funcionamento da rede e para a proteção do usuário.
 
 ### Observações iniciais
-*Vale lembrar que para iniciar todo o processo, é necessário estar conectado com sua VPN
-*Para que isso aconteça use o comando:
+* Vale lembrar que para iniciar todo o processo, é necessário estar conectado com sua VPN
+* Para que isso aconteça use o comando:
 ```bash
 $ openvpn3 session-start --config CONFIG_NAME
 ```
@@ -43,6 +43,11 @@ $ ssh administrador@10.9.13.111
 $ sudo nano /etc/ufw/sysctl.conf
 ```
 ![Captura de tela de 2022-12-23 10-57-43](https://user-images.githubusercontent.com/80183918/209347633-97ef0f7b-b12d-4452-831f-dec606a54663.png)
+
+* Para aplicar as alterações:
+```bash
+$ sudo netplan apply
+```
 
 ### Passo 3
 * Ver se os nomes das interfaces WAN- enp0s3  e LAN- enp0s8 estão corretos
