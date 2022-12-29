@@ -23,6 +23,8 @@ $ sudo systemctl enable bind9
 ```bash
 $ ls /etc/bind
 ```
+![Imagem do WhatsApp de 2022-12-19 à(s) 17 15 31](https://user-images.githubusercontent.com/103438153/210019432-183bbbea-1a9e-4ffa-aff7-cd22adb53dc0.jpg)
+
 
 ## Zonas
 * As zonas são especificadas em arquivos db. Sendo criado ppor um diretório para armazendar os arquivos de zonas, que sera o diretório /etc/bind/zones.
