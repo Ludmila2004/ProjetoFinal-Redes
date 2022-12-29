@@ -112,6 +112,8 @@ $ ls -la
 $ cat /etc/netplan/00-installer-config.yaml
 ```
 ![Captura de tela de 2022-12-23 11-07-51](https://user-images.githubusercontent.com/80183918/209349042-b84e20c2-9121-4265-ad6d-b9f7ec5fa001.png)
+![Captura de tela de 2022-12-29 11-28-52](https://user-images.githubusercontent.com/94541734/209967613-8952a932-94d0-45ae-9f35-c86b196d1e23.png)
+
 
 ### Passo 8 
 * Após o usuário entrar nas outras vpn's com os passos anteriormente ensinados, ultilie o comando:
