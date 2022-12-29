@@ -11,12 +11,12 @@ $ sudo apt-get install bind9 dnsutils bind9-doc
 ```bash
 $ sudo systemctl status bind9
 ```
+![WhatsApp Image 2022-12-23 at 11 37 38](https://user-images.githubusercontent.com/80183918/209551961-5e8ca2a1-4acf-44cb-bc1b-aa508575f856.jpeg)
 
 * Caso, não estiver rodando:
 ```bash
 $ sudo systemctl enable bind9
 ```
-![WhatsApp Image 2022-12-23 at 11 37 38](https://user-images.githubusercontent.com/80183918/209551961-5e8ca2a1-4acf-44cb-bc1b-aa508575f856.jpeg)
 
 
 ## Diretórios do bind
