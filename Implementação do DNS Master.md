@@ -28,13 +28,13 @@ $ ls /etc/bind
 
 
 ## Zonas
-* As zonas são especificadas em arquivos db. Sendo criado ppor um diretório para armazendar os arquivos de zonas, que sera o diretório /etc/bind/zones.
+* As zonas são especificadas em arquivos db. Sendo criado por um diretório para armazendar os arquivos de zonas, que sera o diretório /etc/bind/zones.
 ```bash
 $ sudo mkdir /etc/bind/zones
 ```
 
 ### Zona direta 
-* O arquivo db.labredes.ifalarapiraca.local cos nomes terá o domínio das máquinas  labredes.ifalarapiraca.local.Por sua vez, faremos uma cópia do arquivo /etc/bind/db.empt
+* O arquivo db.labredes.ifalarapiraca.local terá os nomes do domínio das máquinas  labredes.ifalarapiraca.local.Por sua vez, faremos uma cópia do arquivo /etc/bind/db.empty
 ```bash
 $ sudo cp /etc/bind/db.empty /etc/bind/zones/db.labredes.ifalarapiraca.local 
 ```
@@ -46,7 +46,7 @@ $ sudo cp /etc/bind/db.empty /etc/bind/zones/db.labredes.ifalarapiraca.local
 ```bash
   $ sudo cp /etc/bind/db.127 /etc/bind/zones/db.10.9.13.rev
 ```
-![Imagem do WhatsApp de 2022-12-29 à(s) 20 20 55](https://user-images.githubusercontent.com/103438153/210020423-9a7d5596-137d-4fc9-9a61-9bba0ac4b527.jpg)
+![Imagem do WhatsApp de 2022-12-29 à(s) 20 19 55](https://user-images.githubusercontent.com/103438153/210021373-a1c05154-8424-4830-975e-31e00ab81adc.jpg)
 
 ## Editar arquivos db
 ### Zona direta: db.labredes.ifalarapiraca.local
