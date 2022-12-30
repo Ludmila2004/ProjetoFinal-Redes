@@ -22,3 +22,7 @@
 ## Considerações finais
 
 ## Partições:
+* [Parte 1 - Implementação do SAMBA](https://github.com/Ludmila2004/ProjetoFinal-Redes/blob/main/Implementa%C3%A7%C3%A3o%20do%20SAMBA.md)
+* [Parte 2 - Implementação do Gateway Server](https://github.com/Ludmila2004/ProjetoFinal-Redes/blob/main/Implementa%C3%A7%C3%A3o%20do%20gateway%20server.md)
+* [Parte 3 - Implementação do DNS Master](https://github.com/Ludmila2004/ProjetoFinal-Redes/blob/main/Implementa%C3%A7%C3%A3o%20do%20DNS%20Master.md)
+* [Parte 4 - Implementação do DNS Slaver](https://github.com/Ludmila2004/ProjetoFinal-Redes/blob/main/Implementa%C3%A7%C3%A3o%20do%20DNS%20Slave.md)
