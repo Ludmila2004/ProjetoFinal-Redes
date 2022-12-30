@@ -20,6 +20,12 @@
 -----------------------------------------------------------------------------------------------
 ```
 ## Considerações finais
+Por meio da execução e da elaboração desse projeto, 
+pôde-se assimilar e compreender a importância dos serviços 
+implementados nesse último projeto da disciplina Infraestrutura e 
+Serviços de Redes, bem como a indispensabilidade desses 
+serviços em uma rede, visto que otimiza o compartilhamento 
+de arquivos e configura uma organização mais aprimorada aos clientes.
 
 ## Partições:
 * [Parte 1 - Implementação do SAMBA](https://github.com/Ludmila2004/ProjetoFinal-Redes/blob/main/Implementa%C3%A7%C3%A3o%20do%20SAMBA.md)
