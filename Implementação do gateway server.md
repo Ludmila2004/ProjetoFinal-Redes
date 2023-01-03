@@ -60,7 +60,7 @@ $ ifconfig -a
 * Configurar as interfaces de rede, analisar se estão todas as informações, caso estejam dar um "apply"
 > Comando
 ```bash
-$ sudo nano /etc/netplan/50-cloud-init.yaml 
+$ sudo nano /etc/netplan/00-installer-config.yaml
 ```
 ```bash
 $ sudo netplan apply
@@ -77,8 +77,8 @@ $ sudo nano /etc/rc.local
 ```
 Após criado, deve inserir algumas descrições, dessa forma, ficando da seguinte maneira:
 
-![Captura de tela de 2022-12-23 11-00-55](https://user-images.githubusercontent.com/80183918/209348299-4ef5cecf-ee81-4a27-ae94-73a8f28b370a.png)
-![Captura de tela de 2022-12-23 11-02-37](https://user-images.githubusercontent.com/80183918/209348260-16a14715-c4f4-47da-8a97-12241d2ee39b.png)
+![Captura de tela de 2023-01-03 14-27-42](https://user-images.githubusercontent.com/94541734/210409794-e0ef3d5a-00ee-4166-9f55-dc99be3b839d.png)
+
 
 
 ### Passo 6
@@ -93,48 +93,19 @@ $ sudo ufw status
 ```
 ![Captura de tela de 2022-12-23 11-09-15](https://user-images.githubusercontent.com/80183918/209349236-38edf215-2f5b-430c-9c9d-9dc5e313365d.png)
 
-### Passo 6
+### Passo 7
 * Reinicializar a máquina 
 > Comando
 ```bash
 $ sudo reboot
 ```
-### Passo 7
-* A partir daqui, a finalidade é permitir que o serviço de compartilhamento de arquivos esteja disponível externamente
-* Após ter reinicializado, entre novamente na sua vpn(DO GATEWAY)e ultilize o comando abaixo para entrar no seu diretório
-> Comando
+### Passo 8
+*  A fim de testar, execute os seguintes comandos
+> Comando para testar conexão gw e ns1
 ```bash
-$ cd /etc/netplan/
-$ ls -la
+$ ping 10.9.13.118
 ```
-* Depois de executar esses comandos, como a configuração de rede passou a ser feita através da ferramenta Netplan, que mantém as configurações da rede em um arquivo do tipo YAML. O arquivo de configuração de rede nessas versões fica no seguinte endereço:
-```bash
-$ cat /etc/netplan/00-installer-config.yaml
-```
-![Captura de tela de 2022-12-23 11-07-51](https://user-images.githubusercontent.com/80183918/209349042-b84e20c2-9121-4265-ad6d-b9f7ec5fa001.png)
-![Captura de tela de 2022-12-29 11-28-52](https://user-images.githubusercontent.com/94541734/209967613-8952a932-94d0-45ae-9f35-c86b196d1e23.png)
+![Captura de tela de 2023-01-03 14-34-29](https://user-images.githubusercontent.com/94541734/210410755-0922d477-2dec-44d1-8194-9353da5618ea.png)
 
 
-### Passo 8 
-* Após o usuário entrar nas outras vpn's com os passos anteriormente ensinados, ultilie o comando:
-```bash
-$ sudo vi /etc/netplan/00-installer-config.yaml
-```
-* Irá abrir uma interface e o usuário deve ativar o gateway no SAMBA, NS1 e NS2
-* Após isso, você deve comentar(#) o primeiro gateway e tirar o comentário do segundo, como tá representado abaixo.
-* Lembre-se de alterar o gateway para o IP do seu próprio gateway
-```bash
-$ sudo netplan apply
-```
-![Captura de tela de 2022-12-23 11-11-08](https://user-images.githubusercontent.com/80183918/209349478-562f5fbe-95d7-43aa-9a7b-fe2b431c1351.png)
 
-### Passo 9
-* Para que o compartilhamento de arquivos esteja disponível externamente, adicione as informações do IPTABLES sobre portas
-```bash
-$ sudo vi /etc/rc.local
-```
-* Adicione  alguns textos, resultando em:
-
-![Captura de tela de 2022-12-23 11-12-16](https://user-images.githubusercontent.com/80183918/209349623-0befec9f-b753-4131-bb15-8fbd14e63eff.png)
-
-* Além disso, lembre-se de trocar algumas informações ajustando para a sua vpn, como IP e crie uma rota para as portas
